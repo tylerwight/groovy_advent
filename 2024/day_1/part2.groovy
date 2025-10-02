@@ -19,7 +19,7 @@ left_list.each(){ left ->
     def right_count = 0
 
     right_list.each(){ right ->
-        if (left < right){continue}
+        if (left < right){return} // can't use continue in .each loop??
         if (left == right){
             right_count = right_count + 1
         }
