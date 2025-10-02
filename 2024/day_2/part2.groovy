@@ -33,13 +33,26 @@ boolean is_safe(List<Integer> row){
     return true
 }
 
-def safe_reports = 0
-line_list.each{row->
-    println(row)
-    if (is_safe(row)){
-        safe_reports = safe_reports + 1
-    }
+boolean is_safe_with_dampener(List<Integer> row){
+    if (is_safe(row)) return true
 
+    for (int i = 0; i < row.size(); i++){
+        def shortened = new ArrayList<>(row)
+        shortened.remove(i)
+        if (shortened.size() >= 2 && is_safe(shortened)) {
+            println("safe: removed:" + row[i])
+            return true
+        }
+    }
+    return false
+}
+
+def safe_reports = 0
+line_list.each { row ->
+    println(row)
+    if (is_safe_with_dampener(row)) {
+        safe_reports++
+    }
 }
 
 println("Answer (safe_reports) = " + safe_reports)
