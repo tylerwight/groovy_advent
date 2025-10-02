@@ -6,13 +6,19 @@ List<Integer> right_list = []
 //populate left/right list
 for(line in file_contents){
     def (left, right) = line.trim().split(/\s+/)
-    left_list.add(left)
-    right_list.add(right)
+    left_list.add(left.toInteger())
+    right_list.add(right.toInteger())
 }
 
 
 left_list.sort()
 right_list.sort()
-println(left_list)
-println(right_list)
 
+Integer answer = 0
+for (i=0; i < left_list.size(); i++){
+    println(left_list[i] + " " + right_list[i])
+    def difference = Math.abs(left_list[i] - right_list[i])
+    answer = answer + difference
+}
+
+println("Answer = " + answer)
