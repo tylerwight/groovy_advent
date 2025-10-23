@@ -15,7 +15,7 @@ def solve_left_right(lines){
 def solve_up_down(lines){
     int rows = lines.size()
     int cols = lines[0].size()
-    List<String> lines_rotated = (0..<cols).collect {new char[rows]}
+    List<char[]> lines_rotated = (0..<cols).collect {new char[rows]}
 
     // rotate array by 90 degrees, down->up is now left->right
     for (int row = 0; row < rows; row++){
@@ -27,7 +27,8 @@ def solve_up_down(lines){
     }
 
     def count = 0
-    count = solve_left_right(lines)
+    List<String> lines_rotated_str = lines_rotated.collect { new String(it) }
+    count = solve_left_right(lines_rotated_str)
     return count
 }
 
